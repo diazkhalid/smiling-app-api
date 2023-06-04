@@ -20,7 +20,7 @@ const getImgByIdHandler = (request, h) => {
   const imageData = jsonData.picture.find((story) => story.idStory === idStory);
   const image = imageData.fileImg.find((img) => img.id === id);
 
-  if (!image){
+  if (!image) {
     return h.response('Gambar tidak ditemukan').code(404);
   }
 
@@ -88,7 +88,7 @@ const searchStoryHandler = async (request, h) => {
 
 const addReview = async (request, h) => {
   const { id, name, review } = request.payload;
-  const DATE = new Date().toISOString();
+  const DATE = new Date().toLocaleString('en-US', { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
   const inDate = new Date(DATE);
   const year = inDate.getFullYear();
   const month = String(DateHelper.monthNameChecker(inDate.getMonth() + 1)); // Menambahkan '0' jika panjang string kurang dari 2
