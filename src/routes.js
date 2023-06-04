@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 const {
   getAllBooks, getBookByIdHandler, getImgByIdHandler, getThumbByIdHandler, searchStoryHandler,
+  addReview,
 } = require('./handler');
 
 const routes = [
@@ -28,6 +29,11 @@ const routes = [
     method: 'GET',
     path: '/story/search',
     handler: searchStoryHandler,
+  },
+  {
+    method: 'POST',
+    path: '/review',
+    handler: addReview,
   },
 ];
 
