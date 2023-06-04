@@ -88,7 +88,7 @@ const searchStoryHandler = async (request, h) => {
 
 const addReview = async (request, h) => {
   const { id, name, review } = request.payload;
-  const DATE = new Date().toLocaleString('en-US', { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+  const DATE = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
   const inDate = new Date(DATE);
   const year = inDate.getFullYear();
   const month = String(DateHelper.monthNameChecker(inDate.getMonth() + 1)); // Menambahkan '0' jika panjang string kurang dari 2
