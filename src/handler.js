@@ -78,12 +78,9 @@ const searchStoryHandler = async (request, h) => {
   const { title } = request.query;
   const data = fs.readFileSync('data/DATA.json', 'utf8');
   const jsonData = JSON.parse(data);
-  const result = jsonData.stories.filter((story) => story.title.toLowerCase().includes(title));
+  const result = jsonData.stories.filter((story) => story.title.toLowerCase().replace(/\s/g, '').includes(title.toLowerCase().replace(/\s/g, '')));
 
-  if (result.length > 0) {
-    return h.response(result).code(200);
-  }
-  return h.response('Data not found').code(404);
+  return h.response(result).code(200);
 };
 
 const addReview = async (request, h) => {
@@ -91,7 +88,7 @@ const addReview = async (request, h) => {
   const DATE = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
   const inDate = new Date(DATE);
   const year = inDate.getFullYear();
-  const month = String(DateHelper.monthNameChecker(inDate.getMonth() + 1)); // Menambahkan '0' jika panjang string kurang dari 2
+  const month = String(DateHelper.monthNameChecker(inDate.getMonth() + 1));
   const day = String(inDate.getDate());
   const date = `${day} ${month} ${year}`;
   const idReview = nanoid(8);
